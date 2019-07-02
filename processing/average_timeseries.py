@@ -7,10 +7,10 @@ def read_timeseries(filename):
         #print "Reading timeseries data from file: ", filename
   
 	timeseries = dict()
-        '''
-        f = open(filename, 'r')
-        allLines = f.readlines()
-        '''
+        
+        # f = open(filename, 'r')
+        # allLines = f.readlines()
+        
 	with open(filename, 'r') as f:
 		for line in f:
 			values = line.strip().split()
@@ -43,4 +43,4 @@ if __name__ == '__main__':
         stype = 'mean'
     
     val = average_timeseries(read_timeseries(sys.argv[1]), stype)
-    print val
+    print(val)

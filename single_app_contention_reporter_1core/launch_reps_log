@@ -1,0 +1,18 @@
+调用python 脚本执行实验
+Reading experiments
+Reading compete experiements
+There are 3 experiements and 0 complete experiements
+There are 3 experiments to run
+New experiments: [['parsec', 'blackscholes', 1, 1], ['parsec', 'bodytrack', 1, 1], ['parsec', 'canneal', 1, 1]]
+Running experiment: ['parsec', 'blackscholes', 1, 1]
+Running command: ['bash', './run_experiment.sh', 'parsec', 'blackscholes', '1', '1']
+Error: Failed to run experiement (['parsec', 'blackscholes', 1, 1])
+Exception was: Command '['bash', './run_experiment.sh', 'parsec', 'blackscholes', '1', '1']' returned non-zero exit status 3
+Running experiment: ['parsec', 'bodytrack', 1, 1]
+Running command: ['bash', './run_experiment.sh', 'parsec', 'bodytrack', '1', '1']
+Error: Failed to run experiement (['parsec', 'bodytrack', 1, 1])
+Exception was: Command '['bash', './run_experiment.sh', 'parsec', 'bodytrack', '1', '1']' returned non-zero exit status 3
+Running experiment: ['parsec', 'canneal', 1, 1]
+Running command: ['bash', './run_experiment.sh', 'parsec', 'canneal', '1', '1']
+Error: Failed to run experiement (['parsec', 'canneal', 1, 1])
+Exception was: Command '['bash', './run_experiment.sh', 'parsec', 'canneal', '1', '1']' returned non-zero exit status 3

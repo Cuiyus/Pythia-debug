@@ -12,7 +12,9 @@ echo "Launching ${REPS} reps with cores ${CORES}..." 1>&2
 for REP in `seq 1 ${REPS}`; do
     # Generate experiment list
     ./create_experiment.sh "${REP}" "${CORES}" > "experiment_list.${REP}"
-
+    
+    # cuiys Test output
+    echo "调用python 脚本执行实验" 
     echo "Launching rep ${REP}..." 1>&2
     python ./run_experiments.py ${REP}
 

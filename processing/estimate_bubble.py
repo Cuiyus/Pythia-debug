@@ -11,6 +11,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LinearRegression
 
+
 #
 # Purpose: From the tuned reporter curve and the measured reporter IPC estimate the
 #           effective bubble size of the application(s) co-running with the reporter
@@ -23,23 +24,23 @@ from sklearn.linear_model import LinearRegression
 def estimate_bubble(filename, ipc):
     (sizes, ipcs) = utils.read_bubble_size(filename)
 
-    #Jason's old code
+    # Jason's old code
     curve = fit_curve.fit_curve(sizes, ipcs)
     target_function = lambda x: curve.predict([x])[0] - ipc
-    #print ipc, min(sizes), "target :", (target_function(min(sizes)) + ipc), max(sizes), " target :", (target_function(max(sizes)) + ipc)
+    # print ipc, min(sizes), "target :", (target_function(min(sizes)) + ipc), max(sizes), " target :", (target_function(max(sizes)) + ipc)
 
-    #The following is to make sure that bisection method does find a root
-    if(ipc > (ipc + target_function(min(sizes)))):
-	return min(sizes)
-    elif(ipc < (ipc + target_function(max(sizes)))):
-	return max(sizes)
+    # The following is to make sure that bisection method does find a root
+    if (ipc > (ipc + target_function(min(sizes)))):
+        return min(sizes)
+    elif (ipc < (ipc + target_function(max(sizes)))):
+        return max(sizes)
 
     try:
-    	bubble_size = optimize.bisect(target_function, min(sizes), max(sizes))
-        #print "Isotonic ",  bubble_size
-	return bubble_size
+        bubble_size = optimize.bisect(target_function, min(sizes), max(sizes))
+        # print "Isotonic ",  bubble_size
+        return bubble_size
     except:
-   	    print "Isotonic could not find"
+        print("Isotonic could not find")
 
     '''
     #Subrata: I want to try a polynomial regression
@@ -49,7 +50,7 @@ def estimate_bubble(filename, ipc):
     #y = np.array(sizes)
     x = np.transpose(np.array([sizes]))
     y = np.transpose(np.array([ipcs]))
-	
+
     #print x.shape,  y.shape
 
     #polyReg = Pipeline([('poly', PolynomialFeatures(degree=3)),('linear', IsotonicRegression(increasing=True))])
@@ -69,8 +70,9 @@ def estimate_bubble(filename, ipc):
         print "Polyregression ",  bubble_size
         return bubble_size
     except: 
-   	    print "Polyregression could not find"
+        print "Polyregression could not find"
     '''
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:

@@ -71,38 +71,45 @@ def write_complete_experiment(file, experiment):
 def run_experiment(experiment):
     cmd = ['bash', './run_experiment.sh'] + experiment
     cmd = [str(e) for e in cmd]
-    print "Running command: " + str(cmd)
+    print("Running command: " + str(cmd))
+    # cuiys Test
+    # try:
     output = subprocess.check_output(cmd)
+	#output = subprocess.check_output(cmd,shell=True,stderr=subprocess.STDOUT)
+    #except subprocess.CalledProcesssError as e:
+	#raise RuntimeError("command '{}' return with error (code {}):{}".format(e.cmd, e.returncode,e.output))
     values = output.split()
     experiment += values    
     return experiment
 
 def main():
-    print "Reading experiments"
+    print("Reading experiments")
     experiments = read_experiment_list()
-    print "Reading compete experiements"
+    print("Reading compete experiements")
     complete_experiments = read_completed_experiments()
 
-    print "There are %d experiements and %d complete experiements" % (len(experiments), len(complete_experiments))
+    print("There are %d experiements and %d complete experiements" % (len(experiments), len(complete_experiments)))
 
     new_experiments = []	
     for experiment in experiments:
         if experiment not in complete_experiments:
             new_experiments.append(experiment)
 	
-    print "There are %d experiments to run" % (len(new_experiments))
-    print "New experiments: " + str(new_experiments)
+    print("There are %d experiments to run" % (len(new_experiments)))
+    print("New experiments: " + str(new_experiments))
 
     for experiment in new_experiments:
         try:
-            print "Running experiement: " + str(experiment)
+            print("Running experiment: " + str(experiment))
             results = run_experiment(experiment)
-            print "Experiement complete, writing results..."
+	    # cuiys Test
+	    # print(str(experiment)[:2] + "- End - ")
+            print("Experiement complete, writing results...")
             write_complete_experiment(results)
-            print "Finished writing results"
+            print("Finished writing results")
         except Exception as e:
-            print "Error: Failed to run experiement (" + str(experiment) + ")"
-            print "Exception was: " + str(e)
+            print("Error: Failed to run experiement (" + str(experiment) + ")")
+            print("Exception was: " + str(e))
 
 if __name__ == '__main__':
 	main()

@@ -12,7 +12,8 @@ CORES=$1
 
 SCRIPT_DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
-for SUITE in parsec spec_fp spec_int; do
+#for SUITE in parsec spec_fp spec_int; do
+for SUITE in parsec;do
 	for BMARK in `cat "${SCRIPT_DIR}/manifests/${SUITE}_benchmarks"`; do
         echo "${SUITE} ${BMARK} ${REP} ${CORES}"
 	done
