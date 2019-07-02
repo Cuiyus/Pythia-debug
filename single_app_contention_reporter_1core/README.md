@@ -1,14 +1,34 @@
-This is the source code directory of Pythia. Here is a brief introduction,  
-bin/					Binaries  
-processing/				Pythia scripts  
-scripts/				Pythia scripts  
-src/					Source code from other group  
-single_app_contention_mongodb_1core/    Main source code folders, check README in each sub-directory  
-single_app_contention_mongodb_2core/  
-single_app_contention_nginx_2core/  
-single_app_contention_redis_1core/  
-single_app_contention_redis_2core/  
-single_app_contention_reporter_1core/  
-double_app_contention_redis_1core/  
-triple_app_contention_redis_1core/  
+### Quick Start
+
+1.生成实验列表
+
+```shell
+./build_benchmark.sh
+```
+
+2.运行实验
+
+```shell
+numactl -m 0 taskset -c 11 bash ./launch_reps.sh 1 1
+```
+
+运行过程会报错，在data/目录下会生成{EXPERIMENT_NAME}.ipc/ips/reporter_counter这3个文件。
+
+3.刻画reporter的敏感曲线
+
+```shell
+./create_reporter_curve.sh
+```
+
+生成bubble_size.ipc\ipc.medians\ipc.median.normalized\ipc.normalized
+
+4.运行实验
+
+```shell
+numactl -m 0 taskset -c 11 bash ./launch_reps.sh 1 1
+```
+
+
+
+
 
